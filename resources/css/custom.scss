@@ -1,0 +1,25 @@
+@import 'variables';
+
+html, body{
+    height: 100%;
+}
+body{
+    padding: 0;
+    margin: 0;
+}
+
+::-webkit-scrollbar
+{
+    width: 10px;
+}
+::-webkit-scrollbar-thumb
+{
+    background: #adb5bd;
+    border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover
+{
+    background: #71808e;
+}
+
+
