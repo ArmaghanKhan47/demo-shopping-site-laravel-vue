@@ -1,5 +1,6 @@
 import  Index  from './vue/pages/Index.vue';
 import Product from './vue/pages/Product.vue';
+import Cart from './vue/pages/Cart.vue';
 export default [
     {
         path: '/',
@@ -10,5 +11,10 @@ export default [
         path: '/product/:id',
         name: 'productdetail',
         component: Product
+    },
+    {
+        path: '/cart',
+        name: 'cart',
+        component: Cart
     }
 ]

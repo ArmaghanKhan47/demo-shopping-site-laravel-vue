@@ -2,7 +2,7 @@
     <div class="container p-0 row g-1 m-auto my-2">
         <h3 class="my-2">Home</h3>
         <div v-for="product in products" :key="product.id" class="col-12 col-md-4 d-flex flex-column" @click="goToProductPage(product.id)">
-                <img :src="product.image">
+                <img :src="product.image" class="img-thumbnail border-0">
                 <span class="text-truncate w-100">{{ product.name }}</span>
                 <div class="d-flex flex-row justify-content-between align-items-center">
                     <span>Price</span>

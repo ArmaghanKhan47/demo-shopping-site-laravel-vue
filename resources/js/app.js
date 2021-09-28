@@ -18,11 +18,29 @@ const store = createStore({
     mutations: {
         updateProducts(state, products){
             state.products = products;
+        },
+        addItemToCart(state, product){
+            let exist = false;
+            state.cart.forEach(element => {
+                if (element.id === product.id){
+                    exist = true;
+                    element.quantity += product.quantity;
+                }
+            });
+            if (!exist){
+                state.cart.push(product);
+            }
+        },
+        DeleteItemFromCart(state, index){
+            state.cart.splice(index, 1);
         }
     },
     getters: {
         getProducts(state){
             return state.products;
+        },
+        getCart(state){
+            return state.cart;
         }
     },
     actions: {

@@ -25,10 +25,20 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
+                        <router-link :to="{name: 'cart'}" class="nav-link">Cart <span class="badge bg-secondary">{{ cartlength }}</span></router-link>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 </template>
+
+<script>
+export default {
+    computed: {
+        cartlength(){
+            return this.$store.state.cart.length;
+        }
+    }
+}
+</script>
