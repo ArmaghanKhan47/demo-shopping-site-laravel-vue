@@ -1,9 +1,9 @@
 <template>
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
+    <nav class="navbar navbar-expand-md navbar-light bg-transparent shadow-sm sticky-top glass-background">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <router-link class="navbar-brand" :to="{name: 'index'}">
                 Shopping Site
-            </a>
+            </router-link>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -42,3 +42,11 @@ export default {
     }
 }
 </script>
+<style scoped>
+.glass-background{
+    background: rgba( 255, 255, 255, 0.2 ) !important;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 12.5px );
+    -webkit-backdrop-filter: blur( 12.5px );
+}
+</style>

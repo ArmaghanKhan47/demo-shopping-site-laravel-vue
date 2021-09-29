@@ -1,13 +1,16 @@
 <template>
-    <div class="container p-0 row g-1 m-auto my-2">
+    <div class="container d-flex flex-column m-auto my-2">
         <h3 class="my-2">Home</h3>
-        <div v-for="product in products" :key="product.id" class="col-12 col-md-4 d-flex flex-column" @click="goToProductPage(product.id)">
-                <img :src="product.image" class="img-thumbnail border-0">
-                <span class="text-truncate w-100">{{ product.name }}</span>
+        <!-- Products -->
+        <div class="container-fluid m-0 g-2 row p-1">
+            <div v-for="product in products" :key="product.slug" class="col-12 col-md-4 d-flex flex-column" @click="goToProductPage(product.slug)">
+                <img :src="product.image" class="img-fluid">
+                <span class="text-truncate w-100 fs-5 fw-bold">{{ product.name }}</span>
                 <div class="d-flex flex-row justify-content-between align-items-center">
-                    <span>Price</span>
-                    <span>{{ product.price }}</span>
+                    <span class="fs-6">Price</span>
+                    <span class="text-muted fs-6">{{ product.price }} / Unit</span>
                 </div>
+            </div>
         </div>
     </div>
 </template>
@@ -25,11 +28,11 @@ export default {
         }
     },
     methods: {
-        goToProductPage(id){
+        goToProductPage(slug){
             this.$router.push({
                 name: 'productdetail',
                 params: {
-                    id: id
+                    slug: slug
                 }
             });
         }

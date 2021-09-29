@@ -30,9 +30,17 @@ const store = createStore({
             if (!exist){
                 state.cart.push(product);
             }
+
+            window.localStorage.setItem('cart', JSON.stringify(state.cart));
         },
         DeleteItemFromCart(state, index){
             state.cart.splice(index, 1);
+            window.localStorage.setItem('cart', JSON.stringify(state.cart));
+        },
+        restoreCart(state, cart){
+            if (!state.cart.length){
+                state.cart = cart;
+            }
         }
     },
     getters: {
@@ -48,6 +56,12 @@ const store = createStore({
             await axios.get('/products').then(function(response){
                 commit('updateProducts', response.data);
             });
+        },
+
+        restoreCartAction({commit}){
+            if (window.localStorage.getItem('cart')){
+                commit('restoreCart', JSON.parse(window.localStorage.getItem('cart')));
+            }
         }
     }
 });
@@ -57,9 +71,20 @@ const router = createRouter({
     history: createWebHistory()
 });
 
+router.beforeEach((to, from) => {
+    if (to.path === from.path && to.params === from.params)
+    {
+        console.log('Global Nav Guard');
+        console.log(to);
+        console.log(from);
+        return false;
+    }
+});
+
 const app = createApp(App);
 app.use(store);
 app.use(router);
 store.dispatch('getProductsAction');
+store.dispatch('restoreCartAction');
 app.component('navbar', Navbar);
 app.mount('#app');

@@ -1,6 +1,7 @@
 <template>
-    <div class="container p-0 m-auto my-2">
-        <h3 class="my-2">Cart</h3>
+    <div class="container p-0 m-auto my-2 d-flex align-items-center justify-content-between">
+        <h3 class="my-2">Cart {{ `(${cart.length})` }}</h3>
+        <a class="btn btn-outline-success rounded-0">Checkout</a>
     </div>
     <div class="container p-0 m-auto my-2 d-flex flex-column align-items-center">
         <div v-for="(product, index) in cart" :key="index" class="d-flex flex-row align-items-center border my-2 w-100">

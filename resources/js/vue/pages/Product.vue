@@ -1,10 +1,9 @@
 <template>
     <div class="container p-0 row g-1 m-auto my-2">
-        <h3 class="my-2">{{ product.name }}</h3>
         <div class="col-12 col-md-6">
             <img :src="product.image" class="img-fluid">
         </div>
-        <div class="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-start align-items-start">
             <span class="h4">{{ product.name }}</span>
             <span>{{ product.discription }}</span>
             <span>In Stock: {{ product.stock }}</span>
@@ -16,13 +15,36 @@
             <button v-else class="btn btn-outline-secondary rounded-0 shadow-none disabled mt-2">Out of Stock</button>
         </div>
     </div>
+    <div class="container p-0 m-auto my-2">
+        <h3 class="my-2">Feedbacks & Ratings</h3>
+        <div class="container-fluid">
+            <span class="display-1">{{ product.average_rating }}</span>
+        </div>
+        <div class="container-fluid d-flex flex-column justify-content-center">
+            <span v-for="feedback in product.feedbacks" :key="feedback.id" class="d-flex flex-row justify-content-between align-items-center border rounded-0 my-2">
+                <span class="fs-6 text-muted text-truncate" style="max-width: 75%">
+                    {{ feedback.comment }}
+                </span>
+                <span class="display-6 text-muted">
+                    {{ feedback.rating }}
+                </span>
+            </span>
+        </div>
+    </div>
 </template>
 
 <script>
+import { onBeforeRouteUpdate, onBeforeRouteLeave, useRouter } from 'vue-router';
 export default {
+    setup(){
+        onBeforeRouteUpdate((to, from) => {
+
+        })
+    },
     data(){
         return {
-            quantity: 0
+            quantity: 0,
+            slug: this.$route.params.slug
         }
     },
     computed: {
@@ -30,7 +52,7 @@ export default {
             return this.$store.state.products;
         },
         product(){
-            return this.products.find(product => product.id == this.$route.params.id);
+            return this.products.find(product => product.slug == this.slug);
         }
     },
     methods: {
@@ -53,6 +75,6 @@ export default {
                 price: this.product.price
             });
         }
-    }
+    },
 }
 </script>

@@ -8,9 +8,9 @@ export default [
         component: Index
     },
     {
-        path: '/product/:id',
+        path: '/product/:slug',
         name: 'productdetail',
-        component: Product
+        component: Product,
     },
     {
         path: '/cart',
