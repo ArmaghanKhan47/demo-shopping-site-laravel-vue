@@ -1,6 +1,7 @@
 import  Index  from './vue/pages/Index.vue';
 import Product from './vue/pages/Product.vue';
 import Cart from './vue/pages/Cart.vue';
+import Checkout from './vue/pages/Checkout.vue';
 export default [
     {
         path: '/',
@@ -16,5 +17,10 @@ export default [
         path: '/cart',
         name: 'cart',
         component: Cart
+    },
+    {
+        path: '/checkout',
+        name: 'checkout',
+        component: Checkout
     }
 ]

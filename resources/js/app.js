@@ -41,6 +41,9 @@ const store = createStore({
             if (!state.cart.length){
                 state.cart = cart;
             }
+        },
+        clearCart(state){
+            state.cart = [];
         }
     },
     getters: {
@@ -62,6 +65,10 @@ const store = createStore({
             if (window.localStorage.getItem('cart')){
                 commit('restoreCart', JSON.parse(window.localStorage.getItem('cart')));
             }
+        },
+
+        clearCartAction({commit}){
+            commit('clearCart');
         }
     }
 });
